@@ -2,13 +2,8 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
-// Dichiarazione oggetto Post
-let post = {
-    titolo: "",
-    contenuto: "",
-    immagine: "",
-    tag: [],
-};
+// Abilito assets statici
+app.use(express.static("public"));
 
 // Pagina: Home
 app.get("/", (req, res) => {
@@ -27,11 +22,20 @@ app.listen(port, () => {
     console.log(`App Express listening on port ${port}`);
 });
 
+// Dichiarazione oggetto Post
+let post = {
+    titolo: "",
+    contenuto: "",
+    immagine: "",
+    tag: [],
+};
+
 // Array di post
 let posts = [];
 for (let i = 0; i < 5; i++) {
     addObjectToArray(posts, post);
 }
+posts[0].immagine = "./images/ciambellone.jpeg";
 
 console.log(posts);
 
